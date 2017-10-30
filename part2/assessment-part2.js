@@ -42,9 +42,19 @@ function noWeakLink() {
   return $http({
     method: 'GET',
     url: '/api/users'
+  }).then((response) => {
+    console.log(response)
+     firstUser = response.data[0]
+     return response
+    
+    
+  }).then((res) => {
+     thirdUser = res.data[2]
+     return res.data[9]
+     
   })
   // CODE HERE...
-
+resizeBy.status(200).json(response)
 }
 
 
@@ -73,6 +83,10 @@ function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
+
+// boundToElephant.bind(elephant[large()])
+let boundToElephant = large.bind(elephant)
+
 // CODE HERE...
 
 
@@ -88,7 +102,9 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
-
+function deathStar(capacity, crew){
+  return capacity.bind(crew)
+}
 
 
 // *************
@@ -104,7 +120,11 @@ function large() {
 
 // CODE HERE...
 
-
+function accountingOffice(assets){
+  return function(liabitlites){
+    return assets + liabitlites
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -129,6 +149,19 @@ function large() {
 
 // CODE HERE...
 
+function forgetter(name){
+  let hermioneIsHot = []
+  return function rememberall(item) {
+    let object = {
+      name: name,
+      remember: hermioneIsHot
+    }
+
+    hermioneIsHot.push(item)
+    return object
+    
+  }
+}
 
 
 // *************
@@ -156,3 +189,41 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+
+function frodo(startingHungerValue, startingDangerValue){
+  let hunger = startingHungerValue;
+  let danger = startingDangerValue;
+
+  return obj = {
+    dinnerOverFire: function(){
+      hunger = hunger - 25; 
+      danger = danger + 40;
+
+      hunger > 100 ? hunger = 100 : null
+      hunger < 0 ? hunger = 0 : null
+      danger > 100 ? danger = 100 : null
+      danger < 0 ? danger = 0 : null
+
+      return{
+      hunger: hunger,
+      danger: danger
+      }
+    },
+    hidingInBush: function(){
+      hunger = hunger + 35; 
+      danger = danger - 20; 
+
+      hunger > 100 ? hunger = 100 : null
+      hunger < 0 ? hunger = 0 : null
+      danger > 100 ? danger = 100 : null
+      danger < 0 ? danger = 0 : null
+
+     return {
+      hunger: hunger,
+      danger: danger
+      }
+    }
+  }
+
+  
+}
